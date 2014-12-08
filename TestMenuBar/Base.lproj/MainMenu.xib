@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6233" systemVersion="14A329f" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6233"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,9 +11,12 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target">
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="TestMenuBar" customModuleProvider="target">
             <connections>
-                <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
+                <outlet property="sliderTimerOutlet" destination="7o3-bl-oqf" id="snj-IQ-oUT"/>
+                <outlet property="statusMenu" destination="aU9-Wu-gbH" id="Tzz-X8-fLs"/>
+                <outlet property="timerLabel" destination="oWq-2S-6lT" id="1mJ-ti-zL3"/>
+                <outlet property="timerLabelCount" destination="zhi-eD-bnR" id="cwp-YU-VrT"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -666,15 +669,74 @@
                 </menuItem>
             </items>
         </menu>
-        <window title="TestMenuBar" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" animationBehavior="default" id="QvC-M9-y7g">
-            <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
-                <autoresizingMask key="autoresizingMask"/>
-            </view>
-        </window>
+        <customView id="uPJ-xD-oO2">
+            <rect key="frame" x="0.0" y="0.0" width="216" height="144"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7o3-bl-oqf">
+                    <rect key="frame" x="18" y="105" width="136" height="25"/>
+                    <sliderCell key="cell" state="on" alignment="left" minValue="1" maxValue="5" doubleValue="5" tickMarkPosition="above" numberOfTickMarks="9" allowsTickMarkValuesOnly="YES" sliderType="linear" id="jF7-K9-ZDG"/>
+                    <connections>
+                        <action selector="sliderTimer:" target="Voe-Tx-rLC" id="00R-aH-xIb"/>
+                    </connections>
+                </slider>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zhi-eD-bnR">
+                    <rect key="frame" x="160" y="107" width="38" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="jc8-tB-VDd">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FWr-zX-2y0">
+                    <rect key="frame" x="73" y="82" width="70" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Осталось:" id="TkU-Sm-7QR">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oWq-2S-6lT">
+                    <rect key="frame" x="89" y="57" width="38" height="17"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="xh2-nZ-GdA">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BB2-fK-pi4">
+                    <rect key="frame" x="50" y="20" width="116" height="19"/>
+                    <buttonCell key="cell" type="recessed" title="Закрыть" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VJP-Id-0rG">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                        <font key="font" metaFont="systemBold" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="quit:" target="Voe-Tx-rLC" id="3fJ-Rr-5cY"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XHa-xT-TL5">
+                    <rect key="frame" x="15" y="80" width="52" height="19"/>
+                    <buttonCell key="cell" type="recessed" title="Старт" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nZ0-5e-0ew">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                        <font key="font" metaFont="systemBold" size="12"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="startTimer:" target="Voe-Tx-rLC" id="ZHt-zD-m4x"/>
+                    </connections>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="572" y="631"/>
+        </customView>
+        <menu id="aU9-Wu-gbH">
+            <items>
+                <menuItem title="Item 1" id="rMg-1n-HPm">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <outlet property="view" destination="uPJ-xD-oO2" id="Okg-XZ-V6T"/>
+                    </connections>
+                </menuItem>
+            </items>
+            <point key="canvasLocation" x="543" y="429.5"/>
+        </menu>
     </objects>
 </document>

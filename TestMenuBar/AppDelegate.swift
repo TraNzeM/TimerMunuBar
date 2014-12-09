@@ -50,6 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     @IBAction func startTimer(sender: AnyObject) {
         var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "Couting", userInfo: nil, repeats: true)
+        NSRunLoop.mainRunLoop().addTimer(timer, forMode: NSRunLoopCommonModes)
         let icon = NSImage(named: "NoSmoke")
         icon?.setTemplate(true)
         statusItem.image = icon
